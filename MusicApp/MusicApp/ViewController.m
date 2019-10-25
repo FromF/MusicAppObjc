@@ -42,8 +42,12 @@
     NSURL *playFileURL = [NSURL fileURLWithPath:self.cymbalPath];
     // シンバル用のプレイヤーに、音源ファイル名を指定
     self.cymbalPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:playFileURL error:&error];
-    //シンバルの音源再生
-    [self.cymbalPlayer play];
+    if (error == nil) {
+        //シンバルの音源再生
+        [self.cymbalPlayer play];
+    } else {
+        NSLog(@"エラーが発生しました！");
+    }
 }
 
 - (IBAction)guitar:(id)sender {
@@ -52,8 +56,12 @@
     NSURL *playFileURL = [NSURL fileURLWithPath:self.guitarPath];
     // ギター用のプレイヤーに、音源ファイル名を指定
     self.guitarPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:playFileURL error:&error];
-    //ギターの音源再生
-    [self.guitarPlayer play];
+    if (error == nil) {
+        //ギターの音源再生
+        [self.guitarPlayer play];
+    } else {
+        NSLog(@"エラーが発生しました！");
+    }
 }
 
 - (IBAction)play:(id)sender {
@@ -62,10 +70,14 @@
     NSURL *playFileURL = [NSURL fileURLWithPath:self.backmusicPath];
     // バックミュージック用のプレイヤーに、音源ファイル名を指定
     self.backmusicPlayer = [[AVAudioPlayer alloc]initWithContentsOfURL:playFileURL error:&error];
-    // リピート設定
-    self.backmusicPlayer.numberOfLoops = -1;
-    //バックミュージックの音源再生
-    [self.backmusicPlayer play];
+    if (error == nil) {
+        // リピート設定
+        self.backmusicPlayer.numberOfLoops = -1;
+        //バックミュージックの音源再生
+        [self.backmusicPlayer play];
+    } else {
+        NSLog(@"エラーが発生しました！");
+    }
 }
 
 - (IBAction)stop:(id)sender {
